@@ -1,0 +1,26 @@
+query {
+  categories {
+  	...categoryFields,
+    children {
+      ...categoryFields
+      children {
+      	...categoryFields,
+        children {
+          ...categoryFields,
+          children {
+            ...categoryFields,
+            children {
+              ...categoryFields
+            }
+          }
+        }
+    	}
+    }
+	}
+}
+
+fragment categoryFields on Category {
+  id,
+  name,
+  props
+}

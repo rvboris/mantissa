@@ -1,0 +1,7 @@
+type Currency {
+  id: Int!
+  symbol: String!
+  decimalDigits: Int!
+  rounding: Int!
+  code: String!
+}

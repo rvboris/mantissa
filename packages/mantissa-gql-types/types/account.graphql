@@ -1,0 +1,10 @@
+type Account {
+  id: Int!
+  name: String!
+  currency: Currency!
+  type: Int!
+}
+
+type Query {
+  accounts: [Account]
+}

@@ -1,0 +1,14 @@
+query ($offset: Int!, $limit: Int!, $type: Int, $period: PeriodInput!, $orderBy: EntryOrderByInput) {
+	entries(input: { offset: $offset, limit: $limit, type: $type, period: $period, orderBy: $orderBy }) {
+    id,
+    amount,
+    debit {
+      id
+    },
+    credit {
+      id
+    },
+    factDate,
+    description
+  }
+}

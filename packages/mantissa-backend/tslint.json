@@ -1,0 +1,9 @@
+{
+  "extends": "../../tslint.json",
+  "linterOptions": {
+    "exclude": [
+        "./src/**/*.d.ts",
+        "./src/graphql.schema.ts"
+    ]
+  }
+}

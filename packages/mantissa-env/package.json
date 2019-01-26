@@ -1,0 +1,62 @@
+{
+  "name": "@mantissa/env",
+  "version": "1.0.0",
+  "description": "@mantissa/env",
+  "license": "MIT",
+  "repository": "",
+  "author": {
+    "name": "Boris Ryabov",
+    "email": "rv.boris@gmail.com"
+  },
+  "keywords": [
+    "env"
+  ],
+  "files": [
+    "lib"
+  ],
+  "main": "lib/Environment.js",
+  "typings": "lib/Environment.d.ts",
+  "scripts": {
+    "clean": "rimraf lib && rimraf coverage",
+    "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
+    "lint": "tslint --force --format verbose \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build",
+    "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
+    "build": "tsc",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "watch": "npm run build -- --watch",
+    "watch:test": "jest --watch"
+  },
+  "dependencies": {
+    "dotenv-safe": "^6.1.0",
+    "typescript": "^3.2.4"
+  },
+  "devDependencies": {
+    "@types/dotenv-safe": "^5.0.3",
+    "@types/jest": "^23.3.13",
+    "@types/node": "^10.12.18",
+    "jest": "^23.6.0",
+    "prettier": "^1.16.1",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {
+      ".(ts)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}

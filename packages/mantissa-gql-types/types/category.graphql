@@ -1,0 +1,10 @@
+type Category {
+  id: Int!
+  name: String!
+  props: Int!
+  children: [Category!]
+}
+
+type Query {
+  categories: Category
+}

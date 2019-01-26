@@ -1,0 +1,13 @@
+query {
+  accounts {
+    id,
+    name,
+    currency {
+      id,
+      code,
+      symbol,
+      decimalDigits
+    },
+    type
+  }
+}

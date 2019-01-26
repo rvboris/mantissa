@@ -1,0 +1,20 @@
+mutation ($accountId: Int!, $categoryId: Int!, $amount: Float!, $factDate: DateTime!, $description: String) {
+	createCreditOperation(input: {
+    accountId: $accountId,
+    categoryId: $categoryId,
+    amount: $amount,
+    factDate: $factDate,
+    description: $description
+  }) {
+    id,
+    amount,
+    debit {
+      id
+    },
+    credit {
+      id
+    },
+    factDate,
+    description
+  }
+}

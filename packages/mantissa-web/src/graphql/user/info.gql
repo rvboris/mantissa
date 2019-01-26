@@ -1,0 +1,13 @@
+query {
+	user {
+    email,
+    profile {
+      baseCurrency {
+        id,
+        code
+      },
+      locale,
+      timeZoneOffset
+    }
+	}
+}

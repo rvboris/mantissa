@@ -1,0 +1,70 @@
+scalar DateTime
+
+input DebitInput {
+  accountId: Int!
+  categoryId: Int!
+  amount: Float!
+  factDate: DateTime!
+  description: String
+}
+
+input CreditInput {
+  accountId: Int!
+  categoryId: Int!
+  amount: Float!
+  factDate: DateTime!
+  description: String
+}
+
+input TransferInput {
+  fromAccountId: Int!
+  toAccountId: Int!
+  amount: Float!
+  factDate: DateTime!
+  description: String
+}
+
+input PeriodInput {
+  from: DateTime!,
+  to: DateTime!
+}
+
+type Entry {
+  id: Int!
+  amount: Float!
+  debit: Account!
+  credit: Account!
+  factDate: DateTime!
+  description: String
+}
+
+enum EntryOrderByInput {
+  idAsc,
+  idDesc,
+  factDateAsc,
+  factDateDesc,
+  amountAsc,
+  amountDesc
+}
+
+input ListInput {
+  offset: Int!
+  limit: Int!
+  type: Int
+  period: PeriodInput!,
+  orderBy: EntryOrderByInput
+}
+
+type Query {
+  entries(input: ListInput): [Entry]
+}
+
+type Mutation {
+  createDebitOperation(input: DebitInput): Entry
+  updateDebitOperation(entryId: Int!, input: DebitInput): Entry
+  createCreditOperation(input: CreditInput): Entry
+  updateCreditOperation(entryId: Int!, input: CreditInput): Entry
+  createTransferOperation(input: TransferInput): Entry
+  updateTransferOperation(entryId: Int!, input: TransferInput): Entry
+  deleteOperation(entryId: Int!): Entry
+}

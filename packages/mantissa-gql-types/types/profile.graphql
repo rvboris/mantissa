@@ -1,0 +1,6 @@
+type Profile {
+  id: Int!
+  baseCurrency: Currency!
+  locale: String!
+  timeZoneOffset: Int!
+}

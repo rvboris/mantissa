@@ -1,0 +1,26 @@
+input RegisterInput {
+  email: String!
+  password: String!
+  timezoneOffset: Int,
+  locale: String
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}
+
+type User {
+  email: String!
+  profile: Profile!
+}
+
+type Query {
+  user: User,
+  signIn(input: SignInInput): String
+}
+
+type Mutation {
+  register(input: RegisterInput): String
+  signOut: Boolean
+}

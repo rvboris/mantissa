@@ -1,6 +1,6 @@
 <template>
   <v-card flat v-if="accounts">
-    <form @submit.prevent="validateBeforeSubmit" novalidate class="pa-4">
+    <form @submit.prevent="validateBeforeSubmit" novalidate>
       <v-container>
         <v-layout row wrap>
           <v-flex xs6>
@@ -11,6 +11,7 @@
               item-text="name"
               item-value="id"
               required
+              outline
               :items="accounts"
               :label="$t('component.entryExpenseForm.account')"
               :no-data-text="$t('component.entryExpenseForm.accountNotFound')"
@@ -22,6 +23,7 @@
               v-model="amount"
               v-if="selectedAccount"
               v-validate="'required'"
+              outline
               :label="$t('component.entryExpenseForm.amount')"
               :currency="selectedAccount.currency"
               :error-messages="errors.collect('amount')"
@@ -37,6 +39,7 @@
               item-text="formattedName"
               item-value="id"
               required
+              outline
               :items="categoriesList"
               :label="$t('component.entryExpenseForm.category')"
               :no-data-text="$t('component.entryExpenseForm.categoryNotFound')"
@@ -45,7 +48,7 @@
           </v-flex>
         </v-layout>
         <v-layout row>
-          <v-flex xs4>
+          <v-flex xs12 md4>
             <v-dialog
               v-model="modal"
               ref="dialog"
@@ -59,6 +62,7 @@
                 v-validate="'required'"
                 readonly
                 required
+                outline
                 slot="activator"
                 :label="$t('component.entryExpenseForm.date')"
                 :value="formattedFactDate"
@@ -76,12 +80,13 @@
           <v-flex xs12>
             <v-textarea
               v-model="description"
+              outline
               :label="$t('component.entryExpenseForm.description')"
               :error-messages="errors.collect('description')"
             ></v-textarea>
           </v-flex>
         </v-layout>
-        <v-layout row>
+        <v-layout row v-if="!!errorCode">
           <v-flex xs12>
             <v-alert
               :value="!!errorCode"
@@ -92,7 +97,11 @@
           </v-flex>
         </v-layout>
         <v-layout row justify-end>
-          <v-btn flat type="submit" :disabled="inProcess">{{ $t('component.entryExpenseForm.addButton') }}</v-btn>
+          <v-btn
+            outline
+            color="primary"
+            type="submit"
+            :disabled="inProcess">{{ $t('component.entryExpenseForm.addButton') }}</v-btn>
         </v-layout>
       </v-container>
     </form>

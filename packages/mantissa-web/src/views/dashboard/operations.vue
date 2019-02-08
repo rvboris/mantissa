@@ -7,7 +7,7 @@
             <entry-form />
           </v-flex>
           <v-flex>
-            <v-card>Operations</v-card>
+            <entry-list />
           </v-flex>
         </v-layout>
       </v-flex>
@@ -24,11 +24,13 @@
 
   import BalanceList from '../../components/balance-list.vue';
   import EntryForm from '../../components/entry-form.vue';
+  import EntryList from '../../components/entry-list.vue';
 
   @Component({
     components: {
       BalanceList,
-      EntryForm
+      EntryForm,
+      EntryList
     }
   })
   export default class DashboardOperationsView extends Vue {

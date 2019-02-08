@@ -3,10 +3,26 @@ query ($offset: Int!, $limit: Int!, $type: Int, $period: PeriodInput!, $orderBy:
     id,
     amount,
     debit {
-      id
+      id,
+      name,
+      type,
+      currency {
+        id,
+        code,
+        symbol,
+        decimalDigits
+      }
     },
     credit {
-      id
+      id,
+      name,
+      type,
+      currency {
+        id,
+        code,
+        symbol,
+        decimalDigits
+      }
     },
     factDate,
     description

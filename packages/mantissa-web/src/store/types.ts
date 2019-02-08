@@ -24,3 +24,11 @@ export interface ICategoryListItem extends Omit<ICategory, 'children'> {
 export interface IEntryState {
   entries: IEntry[]
 }
+
+export interface IEntryListItem extends IEntry {
+  meta: {
+    isExpense: boolean,
+    isIncome: boolean,
+    isTransfer: boolean
+  }
+}

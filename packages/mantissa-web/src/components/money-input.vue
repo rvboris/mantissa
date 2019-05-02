@@ -17,19 +17,32 @@
   @Component({})
   export default class MoneyInputComponent extends Vue {
     @Prop({ default: '' })
-    private value!: string;
+    public value!: string;
 
     @Prop({ required: true })
-    private currency!: ICurrency;
+    public currency!: ICurrency;
 
     @Prop({ default: ' ' })
-    private digitGroupSeparator!: string;
+    public digitGroupSeparator!: string;
 
     @Prop({ default: false })
-    private allowDecimalPadding!: boolean;
+    public allowDecimalPadding!: boolean;
 
-    private data: string = '';
-    private autonumericInstance: any;
+    public data: string = '';
+
+    public autonumericInstance: any;
+
+    public onInput(value: string): void {
+      this.$emit('input', this.autonumericInstance.getNumber());
+    }
+
+    public get isDollar(): boolean {
+      if (this.currency) {
+        return this.currency.symbol === '$';
+      }
+
+      return true;
+    }
 
     private mounted(): void {
       const inputRef = this.$refs.input as IRefElement;
@@ -43,18 +56,6 @@
         currencySymbol: this.isDollar ? this.currency.symbol : ` ${this.currency.symbol}`,
         currencySymbolPlacement: this.isDollar ? 'p' : 's'
       });
-    }
-
-    private onInput(value: string): void {
-      this.$emit('input', this.autonumericInstance.getNumber());
-    }
-
-    private get isDollar(): boolean {
-      if (this.currency) {
-        return this.currency.symbol === '$';
-      }
-
-      return true;
     }
   }
 </script>

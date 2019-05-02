@@ -4,11 +4,18 @@
     "rootDir": "src",
     "outDir": "dist",
     "module": "esnext",
+    "target": "esnext",
     "jsx": "preserve",
     "baseUrl": ".",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "strict": true,
     "types": [
-      "webpack-env",
-      "webpack",
+      "webpack-env"
     ],
     "typeRoots": [
       "./typings"
@@ -32,5 +39,8 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

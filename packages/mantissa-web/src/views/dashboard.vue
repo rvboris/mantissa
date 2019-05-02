@@ -45,22 +45,22 @@
   })
   export default class DashboardView extends Vue {
     @Action('getInfo', { namespace: 'user' })
-    private getUserInfo!: () => IUser;
+    public getUserInfo!: () => IUser;
 
     @Action('getAccounts', { namespace: 'account' })
-    private getAccounts!: () => IAccount[];
+    public getAccounts!: () => IAccount[];
 
     @Action('getCategories', { namespace: 'category' })
-    private getCategories!: () => ICategory;
+    public getCategories!: () => ICategory;
 
     @Action('getEntries', { namespace: 'entry' })
-    private getEntries!: () => IEntry;
+    public getEntries!: () => IEntry;
 
-    private isNavigatorVisible: boolean = true;
+    public isNavigatorVisible: boolean = true;
 
-    private isLoading: boolean = true;
+    public isLoading: boolean = true;
 
-    private async mounted():Promise<void> {
+    public async mounted():Promise<void> {
       await this.getUserInfo();
 
       await Promise.all([
@@ -72,7 +72,7 @@
       this.isLoading = false;
     }
 
-    private get navigatorItems(): INavItem[] {
+    public get navigatorItems(): INavItem[] {
       return [
         {
           action: () => this.$router.push({ name: 'operations' }),

@@ -1,4 +1,4 @@
-import { config, load } from 'dotenv-safe';
+import { config } from 'dotenv-safe';
 import { existsSync } from 'fs';
 import { resolve } from 'path';
 

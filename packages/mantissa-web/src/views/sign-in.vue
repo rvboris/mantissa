@@ -63,14 +63,14 @@
   @Component({})
   export default class SignInView extends Vue {
     @Action('signIn', { namespace: 'user' })
-    private signIn!: (input: ISignInInput) => string;
+    public signIn!: (input: ISignInInput) => string;
 
-    private email: string = '';
-    private password: string = '';
-    private errorCode: string = '';
-    private inProcess: boolean  = false;
+    public email: string = '';
+    public password: string = '';
+    public errorCode: string = '';
+    public inProcess: boolean  = false;
 
-    private async validateBeforeSubmit(): Promise<void> {
+    public async validateBeforeSubmit(): Promise<void> {
       this.errorCode = '';
 
       const isValid = await this.$validator.validateAll();

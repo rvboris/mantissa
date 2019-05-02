@@ -2,7 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "module": "commonjs",
-    "target": "esnext",
+    "target": "es6",
     "moduleResolution": "node",
     "lib": [
       "esnext",
@@ -12,7 +12,7 @@
     "strict": true,
     "preserveConstEnums": true,
     "removeComments": true,
-    "inlineSourceMap": true,
+    "inlineSourceMap": false,
     "importHelpers": true,
     "skipLibCheck": true,
     "typeRoots": [

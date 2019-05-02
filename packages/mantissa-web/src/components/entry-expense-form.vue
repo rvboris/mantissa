@@ -22,7 +22,7 @@
             <money-input
               v-model="amount"
               v-if="selectedAccount"
-              v-validate="'required'"
+              v-validate="'required|min_value:1'"
               outline
               :label="$t('component.entryExpenseForm.amount')"
               :currency="selectedAccount.currency"
@@ -109,8 +109,7 @@
 </template>
 
 <script lang="ts">
-  import format from 'date-fns/format';
-  import parse from 'date-fns/parse';
+  import { format, parse } from 'date-fns';
   import { Component, Vue, Prop } from 'vue-property-decorator';
   import { Action, State, Getter } from 'vuex-class';
   import { IAccount, ICategory, IEntry, ICreditInput } from '@mantissa/gql-types';
@@ -124,37 +123,25 @@
   })
   export default class EntryExpenseFormComponent extends Vue {
     @State('accounts', { namespace: 'account' })
-    private accounts!: IAccount[];
+    public accounts!: IAccount[];
 
     @Getter('getCategoriesList', { namespace: 'category' })
-    private getCategoriesList!: (params?: any) => ICategory[];
+    public getCategoriesList!: (params?: any) => ICategory[];
 
     @Action('createCreditOperation', { namespace: 'entry' })
-    private createCreditOperation!: (input: ICreditInput) => IEntry;
+    public createCreditOperation!: (input: ICreditInput) => IEntry;
 
-    private categoriesList!: ICategory[];
-    private selectedAccountId: number|null = null;
-    private selectedCategoryId: number|null = null;
-    private amount: number = 0
-    private description: string = '';
-    private factDate: string = new Date().toISOString().substr(0, 10);
-    private modal: boolean = false;
-    private errorCode: string = '';
-    private inProcess: boolean = false;
+    public categoriesList!: ICategory[];
+    public selectedAccountId: number|null = null;
+    public selectedCategoryId: number|null = null;
+    public amount: number = 0;
+    public description: string = '';
+    public factDate: string = new Date().toISOString().substr(0, 10);
+    public modal: boolean = false;
+    public errorCode: string = '';
+    public inProcess: boolean = false;
 
-    private mounted(): void {
-      if (this.accounts.length) {
-        this.selectedAccountId = this.accounts[0].id;
-      }
-
-      this.categoriesList = this.getCategoriesList(CategoryProps.isCreditAllowed | CategoryProps.isBothAllowed);
-
-      if (this.categoriesList.length) {
-        this.selectedCategoryId = this.categoriesList[0].id;
-      }
-    }
-
-    private async validateBeforeSubmit(): Promise<void> {
+    public async validateBeforeSubmit(): Promise<void> {
       this.errorCode = '';
 
       const isValid = await this.$validator.validateAll();
@@ -182,20 +169,32 @@
       this.inProcess = false;
     }
 
-    private get selectedAccount() {
+    public get selectedAccount() {
       return this.accounts.find(({id}) => id === this.selectedAccountId);
     }
 
-    private get selectedCategory() {
+    public get selectedCategory() {
       return this.categoriesList.find(({id}) => id === this.selectedCategoryId);
     }
 
-    private get formattedFactDate () {
-      return this.factDate ? format(this.factDate, 'DD.MM.YYYY') : '';
+    public get formattedFactDate () {
+      return this.factDate ? format(parse(this.factDate, 'yyyy-MM-dd', new Date()), 'dd.MM.yyyy') : '';
     }
 
-    private get isoFactDate () {
-      return this.factDate ? parse(this.factDate).toISOString() : '';
+    public get isoFactDate () {
+      return this.factDate ? parse(this.factDate, 'yyyy-MM-dd', new Date()).toISOString() : '';
+    }
+
+    private mounted(): void {
+      if (this.accounts.length) {
+        this.selectedAccountId = this.accounts[0].id;
+      }
+
+      this.categoriesList = this.getCategoriesList(CategoryProps.isCreditAllowed | CategoryProps.isBothAllowed);
+
+      if (this.categoriesList.length) {
+        this.selectedCategoryId = this.categoriesList[0].id;
+      }
     }
   }
 </script>

@@ -77,15 +77,15 @@
   @Component({})
   export default class RegisterView extends Vue {
     @Action('register', { namespace: 'user' })
-    private register!: (input: IRegisterInput) => string;
+    public register!: (input: IRegisterInput) => string;
 
-    private email: string = '';
-    private password: string = '';
-    private passwordConfirmed: string = '';
-    private errorCode: string = '';
-    private inProcess: boolean  = false;
+    public email: string = '';
+    public password: string = '';
+    public passwordConfirmed: string = '';
+    public errorCode: string = '';
+    public inProcess: boolean  = false;
 
-    private async validateBeforeSubmit(): Promise<void> {
+    public async validateBeforeSubmit(): Promise<void> {
       this.errorCode = '';
 
       const isValid = await this.$validator.validateAll();

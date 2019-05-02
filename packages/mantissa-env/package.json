@@ -1,6 +1,7 @@
 {
   "name": "@mantissa/env",
   "version": "1.0.0",
+  "private": true,
   "description": "@mantissa/env",
   "license": "MIT",
   "repository": "",
@@ -18,10 +19,9 @@
   "typings": "lib/Environment.d.ts",
   "scripts": {
     "clean": "rimraf lib && rimraf coverage",
-    "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
     "lint": "tslint --force --format verbose \"src/**/*.ts\"",
     "prepublishOnly": "npm run build",
-    "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
+    "prebuild": "npm run clean && npm run lint",
     "build": "tsc",
     "test": "jest",
     "coverage": "jest --coverage",
@@ -29,19 +29,17 @@
     "watch:test": "jest --watch"
   },
   "dependencies": {
-    "dotenv-safe": "^6.1.0",
-    "typescript": "^3.2.4"
+    "dotenv-safe": "^6.1.0"
   },
   "devDependencies": {
+    "typescript": "^3.4.5",
     "@types/dotenv-safe": "^5.0.3",
-    "@types/jest": "^23.3.13",
-    "@types/node": "^10.12.18",
-    "jest": "^23.6.0",
-    "prettier": "^1.16.1",
+    "@types/jest": "^24.0.12",
+    "@types/node": "^11.13.8",
+    "jest": "^24.7.1",
     "rimraf": "^2.6.3",
-    "ts-jest": "^23.10.5",
-    "tslint": "^5.12.1",
-    "tslint-config-prettier": "^1.17.0"
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.16.0"
   },
   "engines": {
     "node": ">=10.0.0"

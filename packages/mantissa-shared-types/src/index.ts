@@ -1,2 +1,2 @@
-export { CategoryProps } from './types/CategoryProps';
-export { AccountType } from './types/AccountType';
+export * from './types/CategoryProps';
+export * from './types/AccountType';

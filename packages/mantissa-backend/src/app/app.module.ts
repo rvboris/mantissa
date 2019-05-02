@@ -8,6 +8,7 @@ import { RateModule } from '../rate/rate.module';
 import { GraphQLDateTime } from 'graphql-iso-date';
 import { Env } from '../common/providers/env.provider';
 import { CommonModule } from '../common/common.module';
+import { IGraphQLErrorCode } from '../common/interfaces/graphql-error.interface';
 
 @Module({
   imports: [
@@ -31,8 +32,9 @@ export class AppModule {
           context: ({ req }) => ({ req }),
           installSubscriptionHandlers: true,
           formatError: (err) => {
-            err.code = ErrorCode[err.message] ? err.message : ErrorCode[ErrorCode.UNKNOWN];
-            return err;
+            const formattedError: IGraphQLErrorCode = err;
+            formattedError.code = ErrorCode[err.message] ? err.message : ErrorCode[ErrorCode.UNKNOWN];
+            return formattedError;
           }
         }),
         TypeOrmModule.forRoot({

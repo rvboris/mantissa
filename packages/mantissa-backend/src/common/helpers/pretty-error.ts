@@ -1,6 +1,6 @@
 import pretty from 'pretty-exceptions/lib';
 
-export const formatError = (e: Error) => {
+export const formatError = (e: {} | null | undefined) => {
   const options = {
     color: true,
     cwd: process.cwd(),

@@ -10,7 +10,7 @@ export interface IUserState {
 }
 
 export interface IAccountState {
-  accounts: IAccount[]
+  accounts: Account[]
 }
 
 export interface ICategoryState {
@@ -31,4 +31,8 @@ export interface IEntryListItem extends IEntry {
     isIncome: boolean,
     isTransfer: boolean
   }
+}
+
+export interface IDictionary<T> {
+  [key: string]: T;
 }

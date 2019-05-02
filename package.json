@@ -1,10 +1,10 @@
 {
   "name": "mantissa",
   "devDependencies": {
-		"lerna": "^3.4.3"
+    "lerna": "^3.13.3"
   },
   "scripts": {
-    "bs": "lerna bootstrap --hoist",
+    "bs": "lerna bootstrap",
     "build": "lerna run build",
     "test": "lerna run test",
     "lint": "lerna run lint"

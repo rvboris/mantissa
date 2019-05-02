@@ -19,7 +19,7 @@ export interface IGraphQLResponseErrorLocation {
 export interface IQuery {
   accounts: IAccount | null[] | null;
   categories: ICategory | null;
-  entries: IEntry[] | null;
+  entries: IEntry | null[] | null;
   user: IUser | null;
   signIn: string | null;
 }
@@ -73,7 +73,7 @@ export enum EntryOrderByInput {
   factDateAsc = 'factDateAsc',
   factDateDesc = 'factDateDesc',
   amountAsc = 'amountAsc',
-  amountDesc = 'amountDesc',
+  amountDesc = 'amountDesc'
 }
 
 export interface IEntry {
